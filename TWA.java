@@ -27,12 +27,19 @@ class TWA {
         // end displaying seats in the plane
 
         // reserving a seat
-        System.out.println("\n" + "choose a seat to reserve eg 0 to 9:");
+        System.out.println("\n" + "choose a seat to reserve eg 0 to 9:" + "\n");
 
         i = input.nextInt();
         if (seats[i] == false) {
             seats[i] = true;
             System.out.println("you have reserved a seat number " + i + "\n");
+
+            for (i = 0; i < max; i++) {
+
+                if (seats[i] == true) {
+                    System.out.println(i + " reserved" + "\n");
+                }
+            }
 
         }
         // end of reserving a seat
@@ -52,25 +59,43 @@ class TWA {
 
     public void cancelSeat() {
         // cancellation of resevede seat
-
-        System.out.println("Do you want to cancel the seat you chose? type number of seat you reserved eg 0..9:");
+        // boolean k=true;
+        System.out.println("Do you want to cancel the seat you chose? type number of seat you reserved eg 0..9: or type ");
+        char a = 'x';
         int c = input.nextInt();
         if (seats[c] == true) {
             seats[c] = false;
             System.out.println("you have cancelled  seat number " + c + " you reserved \n");
 
+        } else if (seats[c] == false) {
+            System.out.println("you did not choose that seat;" + "\n");
+
+        } else if (seats[c] != true || seats[c] != false) {
+            System.out.println("exiting..");
+         System.exit(0);
         }
-        else{
-            System.out.println("sorry you didnt reserve that seat");
-        }
+
         // end of cancellation
 
     }
 
+    public void exitCode() {
+        System.out.println("thank you press 1 to exit:");
+        int e;
+        int g = 1;
+        e = input.nextInt();
+        if (e == g) {
+            System.out.println("exit..");
+            System.exit(0);
+        }
+    }
+
     public static void main(String[] args) {
         TWA b = new TWA(10);
+        
         b.unoccupiedSeats();
         b.cancelSeat();
+        b.exitCode();
 
     }
 }

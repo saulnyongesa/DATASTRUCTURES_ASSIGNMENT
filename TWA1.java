@@ -54,30 +54,30 @@ public class TWA1 {
                 { 'A', 'B', 'C', 'D' },
                 { 'A', 'B', 'C', 'D' },
                 { 'A', 'B', 'C', 'D' }, };
-        Scanner input = new Scanner(System.in);
-        String decision = "y";
-        while (decision.equals("y") || decision.equals("Y") && !filledSeats(plane)) {
+        try (Scanner input = new Scanner(System.in)) {
+            String decision = "y";
+            while (decision.equals("y") || decision.equals("Y") && !filledSeats(plane)) {
 
-            displaySeats(plane);
-            System.out.print("Enter a seat(For example 1A, 2B, or 4C): ");
+                displaySeats(plane);
+                System.out.print("Enter a seat(For example 1A, 2B, or 4C): ");
 
-            boolean okSeat = false;
-            while (okSeat == false) {
-                String seat = input.nextLine();
-                int r = findRowSeat(seat);
-                int c = findColumnSeat(seat);
+                boolean okSeat = false;
+                while (okSeat == false) {
+                    String seat = input.nextLine();
+                    int r = findRowSeat(seat);
+                    int c = findColumnSeat(seat);
 
-                if (plane[r][c] == 'X')
-                    System.out.print("Sorry, seat is occupied, enter a different seat:");
-                else {
-                    plane[r][c] = 'X';
-                    okSeat = true;
+                    if (plane[r][c] == 'X')
+                        System.out.print("Sorry, seat is occupied, enter a different seat:");
+                    else {
+                        plane[r][c] = 'X';
+                        okSeat = true;
+                    }
                 }
+                System.out.print("Still Continue ? (y/n)");
+                decision = input.nextLine();
             }
-            System.out.print("Still Continue ? (y/n)");
-            decision = input.nextLine();
         }
-
         System.out.println("Plane seating chart:");
         displaySeats(plane);
     }
